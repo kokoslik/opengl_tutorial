@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Find required packages
 find_package(OpenGL REQUIRED)
 find_package(glfw3 REQUIRED)
+include_directories(third_party)
 
 # Add GLAD
 add_subdirectory(third_party/glad)
@@ -41,6 +42,30 @@ add_executable(three_colors_triangle three_colors_triangle.cpp)
 
 # Link libraries
 target_link_libraries(three_colors_triangle
+    PRIVATE
+    OpenGL::GL
+    glad
+    glfw
+    dl
+)
+
+# Add executable
+add_executable(texture texture.cpp)
+
+# Link libraries
+target_link_libraries(texture
+    PRIVATE
+    OpenGL::GL
+    glad
+    glfw
+    dl
+)
+
+# Add executable
+add_executable(rotation rotation.cpp)
+
+# Link libraries
+target_link_libraries(rotation
     PRIVATE
     OpenGL::GL
     glad
